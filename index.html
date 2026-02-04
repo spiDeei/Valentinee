@@ -33,7 +33,6 @@
   h1 {
     font-size: 32px;
     color: #ff2f68;
-    margin-bottom: 10px;
   }
 
   p {
@@ -110,15 +109,16 @@
     transform: rotate(45deg);
   }
 
-  .scratch-text {
+  .tap-text {
     position: absolute;
-    top: 90px;
-    left: 30px;
-    width: 180px;
+    top: 95px;
+    left: 35px;
+    width: 170px;
     transform: rotate(45deg);
     font-size: 18px;
     color: white;
     font-weight: bold;
+    text-align: center;
   }
 
   /* FLOATING EMOJIS */
@@ -147,7 +147,7 @@
   <h1>Hey Babygirl 💕</h1>
 
   <div class="heart-frame" id="heartFrame">
-    <span class="scratch-text" id="scratchText">Tap / Scratch 💖</span>
+    <div class="tap-text" id="tapText">Tap the heart 💖</div>
     <img id="photo" src="photo.jpg" alt="My Love ❤️">
   </div>
 
@@ -165,16 +165,16 @@
   const text = document.getElementById("text");
   const heartFrame = document.getElementById("heartFrame");
   const photo = document.getElementById("photo");
-  const scratchText = document.getElementById("scratchText");
+  const tapText = document.getElementById("tapText");
 
-  // NO BUTTON RUNS FAR FAR AWAY
+  // NO button runs FAR away
   noBtn.addEventListener("click", () => {
     const x = Math.random() * window.innerWidth * 2 - window.innerWidth;
     const y = Math.random() * window.innerHeight * 2 - window.innerHeight;
     noBtn.style.transform = `translate(${x}px, ${y}px)`;
   });
 
-  // YES BUTTON = LOVE EXPLOSION
+  // YES button
   yesBtn.addEventListener("click", () => {
     heartFrame.style.display = "block";
     text.innerHTML = `
@@ -184,15 +184,13 @@
     yesBtn.style.display = "none";
     noBtn.style.display = "none";
 
-    for (let i = 0; i < 100; i++) {
-      spawnFloat();
-    }
+    for (let i = 0; i < 100; i++) spawnFloat();
   });
 
-  // TAP / SCRATCH TO REVEAL PHOTO
+  // TAP HEART → PHOTO OPENS
   heartFrame.addEventListener("click", () => {
     photo.style.display = "block";
-    scratchText.style.display = "none";
+    tapText.style.display = "none";
   });
 
   function spawnFloat() {
